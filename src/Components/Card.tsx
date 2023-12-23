@@ -36,28 +36,10 @@ const TaskList = () => {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col items-center">
-        {/* Buttons for grouping */}
-        <div className="mb-4">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setGroupBy('status')}>
-            Group by Status
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2" onClick={() => setGroupBy('userId')}>
-            Group by User
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setGroupBy('priority')}>
-            Group by Priority
-          </button>
-        </div>
 
         {/* Buttons for sorting based on groupBy */}
         {(groupBy === 'userId' || groupBy === 'priority' || groupBy === 'status') && (
           <div className="mb-4">
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2" onClick={() => sortTasks('title')}>
-              Sort by Title
-            </button>
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" onClick={() => sortTasks('priority')}>
-              Sort by Priority
-            </button>
           </div>
         )}
 

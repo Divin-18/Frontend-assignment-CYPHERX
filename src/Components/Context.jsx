@@ -2,12 +2,14 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// @ts-ignore
 const TaskContext = createContext();
 
 export const useTaskContext = () => {
   return useContext(TaskContext);
 };
 
+// @ts-ignore
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
@@ -42,9 +44,10 @@ export const TaskProvider = ({ children }) => {
     setGroupedTasks(grouped);
   }, [tasks, groupBy]);
 
-  const sortTasks = (sortKey) => {
+  const sortTasks = (/** @type {string} */ sortKey) => {
     const updatedGroupedTasks = {};
     Object.keys(groupedTasks).forEach(key => {
+      // @ts-ignore
       updatedGroupedTasks[key] = groupedTasks[key].sort((a, b) => {
         if (sortKey === 'title') {
           return a.title.localeCompare(b.title);
