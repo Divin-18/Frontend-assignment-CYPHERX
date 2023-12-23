@@ -3,6 +3,15 @@
 import React from 'react';
 import { useTaskContext } from './Context';
 
+// Define Task interface outside the functional component
+interface Task {
+  id: React.Key | null | undefined;
+  title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined;
+  status: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined;
+  priority: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined;
+  userId: any;
+}
+
 const TaskList = () => {
   const {
     tasks,
@@ -14,13 +23,16 @@ const TaskList = () => {
     setSortBy,
     sortTasks,
   } = useTaskContext();
+  
+  // Assuming tasksForGroup is an array of Task
+  const tasksForGroup: Task[] = tasks || []; 
 
   // Function to render task items based on the groupedTasks
   const renderTasks = () => {
     return Object.entries(groupedTasks).map(([key, tasksForGroup]) => (
       <div key={key}>
         <h2 className="text-lg font-semibold mb-4">{key}</h2>
-        {tasksForGroup.map(task => (
+        {tasksForGroup.map((task: Task) => (
           <div key={task.id} className="max-w-xs bg-white shadow-md rounded-md p-4 mb-4">
             <h3 className="font-semibold text-lg mb-2">{task.title}</h3>
             <p className="text-gray-700">Status: {task.status}</p>
@@ -40,6 +52,7 @@ const TaskList = () => {
         {/* Buttons for sorting based on groupBy */}
         {(groupBy === 'userId' || groupBy === 'priority' || groupBy === 'status') && (
           <div className="mb-4">
+            {/* Your buttons here */}
           </div>
         )}
 
