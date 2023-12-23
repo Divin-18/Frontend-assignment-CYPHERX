@@ -34,10 +34,15 @@ export const TaskProvider = ({ children }) => {
 
   useEffect(() => {
     const grouped = tasks.reduce((acc, task) => {
+      /**
+       * @type {string | number}
+       */
       const key = task[groupBy];
       if (!acc[key]) {
+        // @ts-ignore
         acc[key] = [];
       }
+      // @ts-ignore
       acc[key].push(task);
       return acc;
     }, {});
